@@ -1,9 +1,124 @@
 /*
  Theme Name:   Surfx Squadrone Child
- Theme URI:    localhost:8888/surfx_squadrone_child
- Description:  Surfx Squadrone Child Theme
+ Theme URI:    http://squadrone.bold-themes.com
+ Description:  Surfx Squadrone child theme
  Author:       Ben Fairbanks
+ Author URI:   http://bold-themes.com
  Template:     squadrone
  Version:      1.0.0
- Text Domain:  http://localhost:8888/refresh_live/
+ Tags:         one-column, right-sidebar, custom-menu, featured-images, sticky-post, theme-options, threaded-comments, translation-ready
+ Text Domain:  surfx_squadrone_child
 */
+
+
+/* Theme customization starts here
+-------------------------------------------------------------- */
+
+/* Product Page */
+
+.product-page-hero-image, 
+.center-content {
+    img {
+        margin: auto;
+    }
+}
+
+sup {
+    font-size: .5em;
+}
+
+@media (max-width: 479px) {
+ 
+}
+
+@media (max-width: 767px) {
+ 
+}
+
+@media (max-width: 991px) {
+    .center-content {
+        float: none !important;
+    }
+
+    .half-size-sv-image {
+        width: 50% !important;
+    }
+}
+
+@media (max-width: 1199px) {
+       
+}
+
+/* Specifications Tables */
+
+.specs-table h3 {
+    text-align: center;
+}
+
+.specs-table .column {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #333;
+}
+
+.specs-table .labels {
+    background-color: #333333;
+    color: white;
+    font-size: 1.4em;
+}
+
+.specs-table .labels.row div {
+    border: none;
+    padding: 10px 5px 10px;
+}
+
+.specs-table .row {
+    display: flex;
+    flex-direction: row;
+}
+
+.specs-table .row div {
+    display: flex;
+    width: 50%;
+    padding: 2px 5px;
+    border-bottom: 1px solid lightgray;
+}
+
+.motion-table h3 {
+    text-align: center;
+}
+
+.motion-table .column {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #333;
+}
+
+.motion-table .labels {
+    background-color: #333333;
+    color: white;
+    font-size: 1.1em;
+}
+
+.motion-table .labels.row:first-child div {
+    border: none;
+    padding: 10px 5px 2px;
+}
+
+.motion-table .labels.row div {
+    border: none;
+    padding: 2px 5px 10px;
+}
+
+.motion-table .row {
+    display: flex;
+    flex-direction: row;
+}
+
+.motion-table .row div {
+    display: flex;
+    justify-content: center;
+    width: 20%;
+    padding: 2px 5px;
+    border-bottom: 1px solid lightgray;
+}
