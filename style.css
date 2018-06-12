@@ -34,18 +34,14 @@ sup {
   flex-direction: column;
   border: 2px solid #333; }
 
-.specs-table .labels {
-  background-color: #333333;
-  color: white;
-  font-size: 1.4em; }
-
 .specs-table .labels.row div {
   border: none;
   padding: 10px 5px 10px; }
 
 .specs-table .row {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  flex-wrap: nowrap; }
 
 .specs-table .row div {
   display: flex;
@@ -53,19 +49,42 @@ sup {
   padding: 2px 5px;
   border-bottom: 1px solid lightgray; }
 
-.motion-table h3 {
-  text-align: center; }
-
-.motion-table .column {
-  display: flex;
-  flex-direction: column;
-  border: 2px solid #333; }
-
-.motion-table .labels {
-  background-color: #333333;
+.specs-table .labels div {
+  background-color: #333333 !important;
   color: white;
-  font-size: 1.1em; }
+  font-size: 1.4em; }
 
+/* Robot Table */
+.robot-specs .row div {
+  width: 100%;
+  justify-content: center;
+  align-items: center; }
+  .robot-specs .row div:first-child {
+    justify-content: left;
+    background-color: #7777; }
+
+.one {
+  flex-grow: 1; }
+
+.two {
+  flex-grow: 2; }
+
+.three {
+  flex-grow: 3; }
+
+.four {
+  flex-grow: 4; }
+
+.shrink-two {
+  flex-shrink: 2; }
+
+.shrink-four {
+  flex-shrink: 4; }
+
+.border-right {
+  border-right: 1px solid lightgray; }
+
+/* Motion Table */
 .motion-table .labels.row:first-child div {
   border: none;
   padding: 10px 5px 2px; }
@@ -73,16 +92,5 @@ sup {
 .motion-table .labels.row div {
   border: none;
   padding: 2px 5px 10px; }
-
-.motion-table .row {
-  display: flex;
-  flex-direction: row; }
-
-.motion-table .row div {
-  display: flex;
-  justify-content: center;
-  width: 20%;
-  padding: 2px 5px;
-  border-bottom: 1px solid lightgray; }
 
 /*# sourceMappingURL=style.css.map */
