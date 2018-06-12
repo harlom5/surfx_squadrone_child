@@ -1,0 +1,81 @@
+<div class="motion-table">
+	<h3>Motion Component Specifications</h3>
+	<div class="column">
+		<div class="row labels">
+			<div>Axis</div>
+			<div>Range</div>
+			<div>Resolution</div>
+			<div>Accuracy</div>
+			<div>Max velocity</div>
+		</div>
+		<div class="row labels">
+			<div></div>
+			<div>(mm)</div>
+			<div>(mm)</div>
+			<div>(mm)</div>
+			<div>(mm/s)</div>
+		</div>
+		<div class="row">
+			<div>X</div>
+			<div>400</div>
+			<div>0.1</div>
+			<div>0.5</div>
+			<div>200</div>
+		</div>
+		<div class="row">
+			<div>Y</div>
+			<div>400</div>
+			<div>400</div>
+			<div>100</div>
+			<div>0.1</div>
+		</div>
+		<div class="row">
+			<div>Z</div>
+			<div>100</div>
+			<div>0.1</div>
+			<div>0.5</div>
+			<div>100</div>
+		</div>
+	</div>
+</div>
+
+<style type="text/css">
+	.motion-table h3 {
+		text-align: center;
+	}
+
+	.motion-table .column {
+		display: flex;
+		flex-direction: column;
+		border: 2px solid #333;
+	}
+
+	.motion-table .labels {
+		background-color: #333333;
+	    color: white;
+	    font-size: 1.1em;
+	}
+
+	.motion-table .labels.row:first-child div {
+		border: none;
+		padding: 10px 5px 2px;
+	}
+
+	.motion-table .labels.row div {
+		border: none;
+		padding: 2px 5px 10px;
+	}
+
+	.motion-table .row {
+		display: flex;
+		flex-direction: row;
+	}
+
+	.motion-table .row div {
+		display: flex;
+		justify-content: center;
+		width: 20%;
+		padding: 2px 5px;
+		border-bottom: 1px solid lightgray;
+	}
+</style>
