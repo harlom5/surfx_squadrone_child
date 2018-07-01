@@ -13,6 +13,30 @@
 
 /* Theme customization starts here
 -------------------------------------------------------------- */
+$surfx-red: #5f0a06;
+$surfx-red-bright: #c40010;
+$dark-gray: #333333;
+$table-gray: #c0c0c0;
+
+
+/* Global */ 
+
+.bt_bb_size_large.bt_bb_headline .bt_bb_headline_superheadline,
+.bt_bb_headline_superheadline {
+    font-weight: 600 !important;
+    letter-spacing: initial !important;
+    font-size: 1rem !important;
+}
+
+.bt_bb_headline.bt_bb_subheadline .bt_bb_headline_subheadline {
+    font-weight: 500 !important;
+}
+
+.bt_bb_service .bt_bb_service_content .bt_bb_service_content_title {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+}
+
 
 /* Product Page */
 
@@ -27,12 +51,26 @@ sup {
     font-size: .5em;
 }
 
+.reduced-header h3 {
+    font-size: 1.3em;
+}
+
+.large-font-icon .bt_bb_icon_holder {
+    font-size: 1.5em;
+}
+
+.bt_bb_style_outline:hover.bt_bb_button a {
+    box-shadow: 0 0 0 2.5em black inset !important;
+}
+
 @media (max-width: 479px) {
  
 }
 
 @media (max-width: 767px) {
- 
+    .robot-specs {
+        display: none;
+    }
 }
 
 @media (max-width: 991px) {
@@ -46,8 +84,63 @@ sup {
 }
 
 @media (max-width: 1199px) {
-       
+    .menu-item-has-children {
+        .sub-menu {
+            padding: 10px 0;
+            font-size: 12px;
+            background-color: $dark-gray;
+            border-radius: 32px;
+            color: white;
+        }
+    }   
+    
+    .btMenuVertical .btLogoArea .logo img {
+        margin-top: 2px;
+    }
 }
+
+@media (min-width: 1200px) {
+    body {
+        &.btMenuHorizontal {
+            .topBarInMenu {
+                margin-left: 20px;
+            }
+            
+            .menuPort > nav {
+                padding-left: 25px;
+
+                & > ul > li {
+                    padding-right: 25px;
+                }
+            }
+
+            .btAccentIconWidget.btIconWidget .btIconWidgetContent .btIconWidgetTitle {
+                margin: 0;
+            }
+        }
+        .gutter {
+            .port {
+                max-width: 1500px;
+                margin: auto;
+            }
+        }
+
+        .btLogoArea .logo img {
+            margin-top: -3px;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /* Specifications Tables */
 
@@ -58,7 +151,7 @@ sup {
 .specs-table .column {
     display: flex;
     flex-direction: column;
-    border: 2px solid #333;
+    border: 2px solid $dark-gray
 }
 
 
@@ -82,7 +175,8 @@ sup {
 }
 
 .specs-table .labels div{
-    background-color: #333333 !important;
+    background-color: $surfx-red !important;
+    border: 2px solid $dark-gray !important;
     color: white;
     font-size: 1.4em;
 }
@@ -95,7 +189,7 @@ sup {
 
     &:first-child {
         justify-content: left;
-        background-color: #7777;
+        background-color: $table-gray;
     }
 }
 
