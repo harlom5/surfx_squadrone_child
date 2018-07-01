@@ -103,19 +103,35 @@ sup {
     body {
         &.btMenuHorizontal {
             .topBarInMenu {
-                margin-left: 20px;
+                margin-left: -5px;
             }
             
             .menuPort > nav {
                 padding-left: 25px;
 
                 & > ul > li {
-                    padding-right: 25px;
+                    padding-right: 40px;
+
+                    a {
+                        font-size: .9em;
+                    }
                 }
             }
 
             .btAccentIconWidget.btIconWidget .btIconWidgetContent .btIconWidgetTitle {
                 margin: 0;
+            }
+
+            .subToggler {
+                display: block;
+                right: 5px;
+                top: 1px;
+            }
+
+            .on .subToggler {
+                display: block;
+                right: 5px;
+                top: -3px;
             }
         }
         .gutter {
@@ -128,6 +144,10 @@ sup {
         .btLogoArea .logo img {
             margin-top: -3px;
         }
+    }
+    
+    :not(.rtl).btMenuHorizontal .menuPort > nav > ul > li:last-child {
+        padding-right: 40px !important;
     }
 }
 

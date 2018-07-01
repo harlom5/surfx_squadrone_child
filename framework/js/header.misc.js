@@ -98,11 +98,11 @@ var bt_initHeader;
 		if ( fromTop > window.btStickyOffset ) {
 			if ( $('body').hasClass('btStickyHeaderActive') ) return false;
 			$( 'body' ).addClass( 'btStickyHeaderActive' );
-			setTimeout( function() { $( 'body' ).addClass( 'btStickyHeaderOpen' ) }, 500 );
+            setTimeout( function() { $( 'body' ).addClass( 'btStickyHeaderOpen' ); }, 500 );
 		} else {
 			if ( !$('body').hasClass('btStickyHeaderActive') ) return false;
 			$( 'body' ).addClass( 'btStickyHeaderClosed' );
-			setTimeout( function() { $( 'body' ).removeClass( 'btStickyHeaderActive btStickyHeaderOpen btStickyHeaderClosed' ) }, 250 );
+            setTimeout( function() { $( 'body' ).removeClass( 'btStickyHeaderActive btStickyHeaderOpen btStickyHeaderClosed');}, 250 );
 		}
 	}
 	
@@ -113,8 +113,14 @@ var bt_initHeader;
 			$(window).on("resize", function(event){
 				if( window.innerWidth < window.responsiveResolution ) {
                     $( 'body' ).addClass( 'btMenuVerticalLeft btMenuVertical' ).removeClass( 'btMenuHorizontal' );
+                    removeMenuListeners();
+                    verticalMenuListeners();
+                    console.log('vertical listeners added');
 				} else {
-					$( 'body' ).removeClass( 'btMenuVertical btMenuVerticalLeft btMenuVerticalOn' ).addClass( 'btMenuHorizontal' );				
+                    $( 'body' ).removeClass( 'btMenuVertical btMenuVerticalLeft btMenuVerticalOn' ).addClass( 'btMenuHorizontal' );				
+                    removeMenuListeners();
+                    horizontalMenuListeners();	
+                    console.log('horizontal listeners added');
                 }
                 $( '.menuPort nav > ul li' ).removeClass( 'on' );
 				boldthemes_calculate_content_padding();
@@ -124,7 +130,10 @@ var bt_initHeader;
 
 	function init_menu() {
 		
-		initial_header_setup();
+        initial_header_setup();
+        
+        /* Menu sub togglers */
+        $( '.menuPort ul ul' ).parent().prepend( '<div class="subToggler"></div>');
 		
 		if ( verticalMenuEnabled ) {
 			if ( $( 'body' ).hasClass( 'btMenuVerticalLeftEnabled' )) $( 'body' ).addClass( 'btMenuVerticalLeft btMenuVertical' );
@@ -136,9 +145,15 @@ var bt_initHeader;
 			if ( $( 'body' ).hasClass( 'btMenuCenterEnabled' )) $( 'body' ).addClass( 'btMenuCenter btMenuHorizontal' );
 			/* Switch to vertical */
 			if( window.innerWidth < window.responsiveResolution ) {
-				$( 'body' ).addClass( 'btMenuVerticalLeft btMenuVertical' ).removeClass( 'btMenuHorizontal' );
+                $( 'body' ).addClass( 'btMenuVerticalLeft btMenuVertical' ).removeClass( 'btMenuHorizontal' );
+                removeMenuListeners();
+                verticalMenuListeners();
+                console.log('init vertical listeners added');
 			} else {
-				$( 'body' ).removeClass( 'btMenuVertical btMenuVerticalLeft btMenuVerticalOn' ).addClass( 'btMenuHorizontal' );				
+                $( 'body' ).removeClass( 'btMenuVertical btMenuVerticalLeft btMenuVerticalOn' ).addClass( 'btMenuHorizontal' );		
+                removeMenuListeners();
+                horizontalMenuListeners();	
+                console.log('init horizontal listeners added');
 			}
 		}	
 			
@@ -147,48 +162,76 @@ var bt_initHeader;
 			boldthemes_calculate_content_padding();
 		}
 		
-		setTimeout( function() { $( 'body' ).addClass( 'btMenuInitFinished' ); }, 100 );
+        setTimeout( function() { $( 'body' ).addClass( 'btMenuInitFinished' ); }, 100 );
+        
 		
 		if ( btStickyEnabled ) {
 			setTimeout( function() { 
 				$( window ).scroll(function(){
 					boldthemes_activate_sticky();
-				});
-			}, 1000 );
+                });
+			}, 100 );
 		}
 		
 		/* Menu split */
 		
         if ( hasCentralMenu ) divide_menu();
 
-		/* Menu sub togglers */
 		
-		$( '.menuPort ul ul' ).parent().prepend( '<div class="subToggler"></div>');
+		
+        
 
-		$( '.menuPort nav > ul li' ).on( 'mouseenter mouseleave', function (e) {
-			if ( $( 'body' ).hasClass( 'btMenuVertical' ) || $( 'html' ).hasClass( 'touch' ) ) {
-				return false;
-			}
-			e.preventDefault();
-			$( this ).siblings().removeClass( 'on it-works' );
-            $( this ).toggleClass( 'on it-works' );
-		});
-
-		$( 'div.subToggler, .menuPort nav > ul li.menu-item-has-children a' ).on( 'click', function(e) {
-            e.preventDefault();
-            var parent = $( this ).parent();
-			parent.siblings().removeClass( 'on it-works' );
-			parent.toggleClass( 'on it-works' );
-			if ( $( 'body' ).hasClass( 'btMenuVertical' ) ) {
-				parent.find( 'ul' ).first().slideToggle( 200 );
-			}
-			return false;
-		});
+        // $( '.menuPort nav > ul li a, .btMenuHorizontal div.subToggler' ).on( 'mouseenter mouseleave', function (e) {
+		// horizontalMenuListeners();
+        
+        // verticalMenuListeners();
 		
 		final_header_setup();
 		
-	}
+    }
+
+    function horizontalMenuListeners () {
+        $( 'div.subToggler, .menuPort nav > ul li.menu-item-has-children > a' ).on('click', function (e) {
+            if ( $( 'body' ).hasClass( 'btMenuVertical' ) || $( 'html' ).hasClass( 'touch' ) ) {
+                return false;
+            }
+
+            e.preventDefault();
+            $( this ).parent().siblings().removeClass( 'on' );
+            $( this ).parent().toggleClass( 'on' );
+
+            e.stopPropagation();
+            if ($(this).parent().hasClass('on')) {
+                $('body').addClass('non-nav-listener');
+                $('.non-nav-listener').on('click', function () {
+                    $('.menuPort nav > ul li').removeClass('on');
+                    $(this).off()
+                });
+            } 
+        });
+    }
+    
+    function verticalMenuListeners () {
+        $( 'div.subToggler, .menuPort nav > ul li.menu-item-has-children > a' ).on( 'click', function(e) {
+            if ( $( 'body' ).hasClass( 'btMenuHorizontal' )) {
+                return false;
+            }
+            e.preventDefault();
+            var parent = $( this ).parent();
+            parent.siblings().removeClass( 'on' );
+            parent.toggleClass( 'on' );
+            if ( $( 'body' ).hasClass( 'btMenuVertical' ) ) {
+                parent.find( 'ul' ).first().slideToggle( 200 );
+            }
+            return false;
+        });
+    }
 	
+    function removeMenuListeners () {
+        $( 'div.subToggler, .menuPort nav > ul li.menu-item-has-children > a' ).off();
+    }
+
+
 	/* Calculate content padding for not below menu */
 	
 	function boldthemes_calculate_content_padding() {
